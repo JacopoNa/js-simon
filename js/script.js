@@ -35,10 +35,38 @@ let userNumbers = []
 
 // array di numeri casuali
 casualArray = generateRandom(1, 50, 5);
+console.log('casual array', casualArray);
+
+// array risultato
+let resultArray = [];
 
 // alert di numeri
-const casualAlert = prompt(casualArray);
+const casualAlert =parseInt(prompt(casualArray));
 
+// utente inserisce 5 numeri alla volta dopo 30 secondi dalla chiusura del primo prompt
 setTimeout (function() {
-    alert('ciao')
-}, 3000);
+    let userPrompt;
+
+    for(let i = 0; i < 5; i++) {
+        userPrompt = parseInt(prompt('inserisci il numero'));
+        // pusho i numeri inseriti dall'utente in un array
+        userNumbers.push(userPrompt);
+    }
+
+    console.log('numeri inseriti utente', userNumbers)
+
+    // ciclo for per esaminare ogni numero inserito dall'utente
+    for (let i = 0; i < userNumbers.length; i++) {
+        const userElement = userNumbers[i];
+        
+        // se il numero inserito dall'utente è presente nell'array dei numeri casuali allora lo pusho in un array che determina i numeri indovinati dall'utente
+        if(casualArray.includes(userElement)) {
+            resultArray.push(userElement);
+        }
+    }
+    alert('Hai indovinato ' + resultArray.length + ' numeri, e sono: ' + resultArray);
+
+}, 30000);
+
+
+
